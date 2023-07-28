@@ -1,23 +1,16 @@
 package com.gaur.mealsearch.presentation.meal_search
 
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gaur.mealsearch.common.Resource
+import com.gaur.mealsearch.domain.repository.MealSearchRepository
 import com.gaur.mealsearch.domain.use_case.SearchMealsUseCase
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import javax.inject.Inject
 
-@HiltViewModel
-class MealSearchViewModel @Inject constructor(
-    private val mealSearchMealsUseCase: SearchMealsUseCase
-) : ViewModel() {
-
-
+class MealSearchViewModel constructor(private val mealSearchMealsUseCase: SearchMealsUseCase) : ViewModel() {
     private val _mealSearchList = MutableStateFlow<MealSearchState>(MealSearchState())
     val mealSearchList: StateFlow<MealSearchState> = _mealSearchList
 

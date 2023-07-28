@@ -8,8 +8,6 @@ import com.gaur.mealsearch.domain.model.Meal
 
 class MealSearchAdapter : RecyclerView.Adapter<MealSearchAdapter.MyViewHolder>() {
 
-
-
     private var listener :((Meal)->Unit)?=null
 
     var list = mutableListOf<Meal>()

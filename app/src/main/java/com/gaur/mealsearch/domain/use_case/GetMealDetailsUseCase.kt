@@ -8,9 +8,8 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
 import java.io.IOException
-import javax.inject.Inject
 
-class GetMealDetailsUseCase @Inject constructor(private val repository: MealDetailsRepository) {
+class GetMealDetailsUseCase(private val repository: MealDetailsRepository) {
 
     operator fun invoke(id: String): Flow<Resource<List<MealDetails>>> = flow {
         try {

@@ -1,9 +1,16 @@
 package com.gaur.mealsearch
 
 import android.app.Application
-import dagger.hilt.android.AndroidEntryPoint
-import dagger.hilt.android.HiltAndroidApp
+import com.gaur.mealsearch.diModules.useCaseModule
+import com.gaur.mealsearch.diModules.viewModelModule
+import org.koin.core.context.startKoin
 
-@HiltAndroidApp
+
 class BaseApplication : Application() {
+    override fun onCreate() {
+        super.onCreate()
+        startKoin {
+           modules(useCaseModule, viewModelModule)
+        }
+    }
 }

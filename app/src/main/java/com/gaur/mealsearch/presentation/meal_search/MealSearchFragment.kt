@@ -11,17 +11,13 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.coroutineScope
 import androidx.navigation.fragment.findNavController
 import com.gaur.mealsearch.databinding.FragmentMealSearchBinding
-import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 
-@AndroidEntryPoint
 class MealSearchFragment : Fragment() {
 
     private val searchAdapter = MealSearchAdapter()
 
-
     private val viewModel: MealSearchViewModel by viewModels()
-
 
     private var _binding: FragmentMealSearchBinding? = null
     val binding: FragmentMealSearchBinding

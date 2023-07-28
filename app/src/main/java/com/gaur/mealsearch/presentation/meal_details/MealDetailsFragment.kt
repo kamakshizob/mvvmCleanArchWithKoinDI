@@ -1,5 +1,4 @@
 package com.gaur.mealsearch.presentation.meal_details
-
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,24 +10,22 @@ import androidx.lifecycle.coroutineScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.gaur.mealsearch.databinding.FragmentMealDetailsBinding
-import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 
 
-@AndroidEntryPoint
 class MealDetailsFragment : Fragment() {
 
-    private var _binding: FragmentMealDetailsBinding? = null
-    val binding: FragmentMealDetailsBinding
-        get() = _binding!!
 
+    private var _binding: FragmentMealDetailsBinding? = null
+    val binding: FragmentMealDetailsBinding get() = _binding!!
+
+    // Use Koin's viewModel() function to instantiate the ViewModel
     private val viewModel: MealDetailsViewModel by viewModels()
 
     private val args: MealDetailsFragmentArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
@@ -44,13 +41,12 @@ class MealDetailsFragment : Fragment() {
             viewModel.getMealDetails(it)
         }
 
-
         lifecycle.coroutineScope.launchWhenCreated {
             viewModel.mealDetails.collect {
                 if (it.isLoading) {
                 }
                 if (it.error.isNotBlank()) {
-                    Toast.makeText(requireContext(),it.error,Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), it.error, Toast.LENGTH_SHORT).show()
                 }
                 it.data?.let {
                     binding.mealDetails = it
@@ -58,12 +54,8 @@ class MealDetailsFragment : Fragment() {
             }
         }
 
-
         binding.detailsBackArrow.setOnClickListener {
             findNavController().popBackStack()
         }
-
-
     }
-
 }
